@@ -1,4 +1,4 @@
-package org.andengine.extension.physics.box2d;
+package org.andengine.extension.physics.box2d.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +10,8 @@ import org.andengine.entity.Entity;
 import org.andengine.entity.primitive.Ellipse;
 import org.andengine.entity.primitive.PolyLine;
 import org.andengine.entity.shape.Shape;
+import org.andengine.extension.physics.box2d.PhysicsConnector;
+import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 import android.graphics.Color;
