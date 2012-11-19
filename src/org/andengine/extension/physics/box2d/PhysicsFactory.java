@@ -16,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -199,9 +200,9 @@ public class PhysicsFactory {
 		
 		final Body boxBody = pPhysicsWorld.createBody(lineBodyDef);
 		
-		final PolygonShape linePoly = new PolygonShape();
+		final EdgeShape linePoly = new EdgeShape();
 		
-		linePoly.setAsEdge(new Vector2(pX1 / pPixelToMeterRatio, pY1 / pPixelToMeterRatio), new Vector2(pX2 / pPixelToMeterRatio, pY2 / pPixelToMeterRatio));
+		linePoly.set(new Vector2(pX1 / pPixelToMeterRatio, pY1 / pPixelToMeterRatio), new Vector2(pX2 / pPixelToMeterRatio, pY2 / pPixelToMeterRatio));
 		pFixtureDef.shape = linePoly;
 		
 		boxBody.createFixture(pFixtureDef);

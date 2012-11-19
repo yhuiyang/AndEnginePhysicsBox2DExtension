@@ -35,12 +35,12 @@ class Vector2Util {
 	// ===========================================================
 
 	public static boolean isLess(final Vector2 pVertexA, final Vector2 pVertexB) {
-		final float f = pVertexA.cross(pVertexB);
+		final float f = pVertexA.crs(pVertexB);
 		return f > 0 || f == 0 && Vector2Util.isLonger(pVertexA, pVertexB);
 	}
 
 	public static boolean isLonger(final Vector2 pVertexA, final Vector2 pVertexB) {
-		return pVertexA.lenManhattan() > pVertexB.lenManhattan();
+		return pVertexA.len() > pVertexB.len();
 	}
 
 	public static float getManhattanDistance(final Vector2 pVertexA, final Vector2 pVertexB) {
