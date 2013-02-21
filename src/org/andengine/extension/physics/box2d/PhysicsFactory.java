@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.andengine.entity.IEntity;
 import org.andengine.entity.primitive.Line;
-import org.andengine.entity.shape.IShape;
 import org.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 import org.andengine.util.Constants;
 import org.andengine.util.math.MathUtils;
@@ -124,6 +123,7 @@ public class PhysicsFactory {
 	 * @param pPixelToMeterRatio
 	 * @return
 	 */
+	@SuppressWarnings("deprecation")
 	public static Body createBoxBody(final PhysicsWorld pPhysicsWorld, final IEntity pEntity, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
 		final float[] sceneCenterCoordinates = pEntity.getSceneCenterCoordinates();
 		final float centerX = sceneCenterCoordinates[Constants.VERTEX_INDEX_X];
@@ -238,6 +238,7 @@ public class PhysicsFactory {
 	 * @param pPixelToMeterRatio
 	 * @return
 	 */
+	@SuppressWarnings("deprecation")
 	public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final IEntity pEntity, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
 		final float[] sceneCenterCoordinates = pEntity.getSceneCenterCoordinates();
 		final float centerX = sceneCenterCoordinates[Constants.VERTEX_INDEX_X];
@@ -377,14 +378,14 @@ public class PhysicsFactory {
 
 	/**
 	 * @param pPhysicsWorld
-	 * @param pShape
+	 * @param pEntity
 	 * @param pVertices are to be defined relative to the center of the pShape and have the {@link PhysicsConstants#PIXEL_TO_METER_RATIO_DEFAULT} applied.
 	 * @param pBodyType
 	 * @param pFixtureDef
 	 * @return
 	 */
-	public static Body createPolygonBody(final PhysicsWorld pPhysicsWorld, final IShape pShape, final Vector2[] pVertices, final BodyType pBodyType, final FixtureDef pFixtureDef) {
-		return PhysicsFactory.createPolygonBody(pPhysicsWorld, pShape, pVertices, pBodyType, pFixtureDef, PIXEL_TO_METER_RATIO_DEFAULT);
+	public static Body createPolygonBody(final PhysicsWorld pPhysicsWorld, final IEntity pEntity, final Vector2[] pVertices, final BodyType pBodyType, final FixtureDef pFixtureDef) {
+		return PhysicsFactory.createPolygonBody(pPhysicsWorld, pEntity, pVertices, pBodyType, pFixtureDef, PIXEL_TO_METER_RATIO_DEFAULT);
 	}
 
 	/**
@@ -395,11 +396,11 @@ public class PhysicsFactory {
 	 * @param pFixtureDef
 	 * @return
 	 */
-	public static Body createPolygonBody(final PhysicsWorld pPhysicsWorld, final IShape pShape, final Vector2[] pVertices, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
+	public static Body createPolygonBody(final PhysicsWorld pPhysicsWorld, final IEntity pEntity, final Vector2[] pVertices, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
 		final BodyDef boxBodyDef = new BodyDef();
 		boxBodyDef.type = pBodyType;
 
-		final float[] sceneCenterCoordinates = pShape.getSceneCenterCoordinates();
+		final float[] sceneCenterCoordinates = pEntity.getSceneCenterCoordinates();
 		boxBodyDef.position.x = sceneCenterCoordinates[Constants.VERTEX_INDEX_X] / pPixelToMeterRatio;
 		boxBodyDef.position.y = sceneCenterCoordinates[Constants.VERTEX_INDEX_Y] / pPixelToMeterRatio;
 
@@ -419,14 +420,14 @@ public class PhysicsFactory {
 
 	/**
 	 * @param pPhysicsWorld
-	 * @param pShape
+	 * @param pEntity
 	 * @param pTriangleVertices are to be defined relative to the center of the pShape and have the {@link PhysicsConstants#PIXEL_TO_METER_RATIO_DEFAULT} applied.
 	 * @param pBodyType
 	 * @param pFixtureDef
 	 * @return
 	 */
-	public static Body createTrianglulatedBody(final PhysicsWorld pPhysicsWorld, final IShape pShape, final List<Vector2> pTriangleVertices, final BodyType pBodyType, final FixtureDef pFixtureDef) {
-		return PhysicsFactory.createTrianglulatedBody(pPhysicsWorld, pShape, pTriangleVertices, pBodyType, pFixtureDef, PIXEL_TO_METER_RATIO_DEFAULT);
+	public static Body createTrianglulatedBody(final PhysicsWorld pPhysicsWorld, final IEntity pEntity, final List<Vector2> pTriangleVertices, final BodyType pBodyType, final FixtureDef pFixtureDef) {
+		return PhysicsFactory.createTrianglulatedBody(pPhysicsWorld, pEntity, pTriangleVertices, pBodyType, pFixtureDef, PIXEL_TO_METER_RATIO_DEFAULT);
 	}
 
 	/**
@@ -438,13 +439,13 @@ public class PhysicsFactory {
 	 * @param pFixtureDef
 	 * @return
 	 */
-	public static Body createTrianglulatedBody(final PhysicsWorld pPhysicsWorld, final IShape pShape, final List<Vector2> pTriangleVertices, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
+	public static Body createTrianglulatedBody(final PhysicsWorld pPhysicsWorld, final IEntity pEntity, final List<Vector2> pTriangleVertices, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
 		final Vector2[] TMP_TRIANGLE = new Vector2[3];
 
 		final BodyDef boxBodyDef = new BodyDef();
 		boxBodyDef.type = pBodyType;
 
-		final float[] sceneCenterCoordinates = pShape.getSceneCenterCoordinates();
+		final float[] sceneCenterCoordinates = pEntity.getSceneCenterCoordinates();
 		boxBodyDef.position.x = sceneCenterCoordinates[Constants.VERTEX_INDEX_X] / pPixelToMeterRatio;
 		boxBodyDef.position.y = sceneCenterCoordinates[Constants.VERTEX_INDEX_Y] / pPixelToMeterRatio;
 
